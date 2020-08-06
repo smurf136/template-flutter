@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'email/signin_email.dart';
-import '../components/signin_button.dart';
-
+import 'package:template/components/signin_button.dart';
+import 'package:template/screens/demo/EligibilityScreen.dart';
 class SigninPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -32,6 +32,22 @@ class SigninPage extends StatelessWidget {
                   )
                 );
               }
+            ),
+            Container(
+              width: double.infinity,
+              child: FlatButton(
+                child: Text("Demo"),
+                color: Colors.blue,
+                textColor: Colors.white,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EligibilityScreen()
+                    )
+                  );
+                }
+              )
             )
           ],
         ),
