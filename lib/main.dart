@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:template/screens/email/register_email_demo.dart';
+import 'package:template/screens/email/signin_email.dart';
+import 'package:template/screens/main_page.dart';
 
-import 'screens/signin_page.dart';
-import './template/login_signup_page.dart';
+import 'package:template/screens/signin_page.dart';
+import 'package:template/states/UserProvider.dart';
 void main() {
   runApp(MyApp());
 }
@@ -10,25 +14,29 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: SigninPage()
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserProvider())
+      ],
+      child: Consumer<UserProvider>(
+        builder: (context, user, _) => MaterialApp(
+          title: "My Demo Alpha",
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: user.isAuth 
+              ? MainPage()
+              : SigninPage(),
+          initialRoute: '/main_sign_in',
+          routes: {
+            SigninPage.routeName: (context) => SigninPage(),
+            SignInWithEmail.routeName: (context) => SignInWithEmail(),
+            RegisterPage.routeName: (context) => RegisterPage(),
+            MainPage.routeName: (context) => MainPage()
+          },
+        )
+      )
     );
   }
 
