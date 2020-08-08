@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-import 'email/signin_email.dart';
 import 'package:template/components/signin_button.dart';
 import 'package:template/screens/demo/EligibilityScreen.dart';
+
 class SigninPage extends StatelessWidget {
+
+  static const routeName = '/main_sign_in';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,11 +29,9 @@ class SigninPage extends StatelessWidget {
               title: "Sign-in with Email", 
               icon: Icons.email, 
               handle: () {
-                Navigator.push(
+                Navigator.pushNamed(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => SignInWithEmail()
-                  )
+                  '/sign_in_email_page'
                 );
               }
             ),

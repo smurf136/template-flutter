@@ -9,6 +9,9 @@ import '../../components/notification.dart';
 import '../../services/register/register_with_email_demo.dart';
 
 class RegisterPage extends StatefulWidget {
+
+  static const routeName = '/register_email_page';
+
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }

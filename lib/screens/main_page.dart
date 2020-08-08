@@ -2,8 +2,12 @@ import 'package:template/screens/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
+import 'package:template/states/UserProvider.dart';
 class MainPage extends StatelessWidget {
+
+  static const routeName = '/main_page';
 
   MainPage({Key key, @required this.user, @required this.snap}) : super(key : key);
   final FirebaseUser user;
@@ -17,9 +21,10 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider user = Provider.of<UserProvider>(context, listen:false);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Demo Project"),
+        title: Text("Welcome, " + user.getSnap.data["firstname"]),
         actions: <Widget>[
           IconButton(
             tooltip: "Sign-out",
@@ -29,14 +34,12 @@ class MainPage extends StatelessWidget {
             ),
             onPressed: () {
               // final FirebaseAuth _auth = FirebaseAuth.instance;
-
+              print(FirebaseAuth.instance.currentUser());
               print("Sign-out Successfully");
               FirebaseAuth.instance.signOut();
-              Navigator.pushReplacement(
+              Navigator.pushReplacementNamed(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => SigninPage()
-                )
+                '/main_sign_in'
               );
             }
           )
@@ -54,14 +57,14 @@ class MainPage extends StatelessWidget {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: NetworkImage(snap.data["url"])
+                    image: NetworkImage(user.getSnap.data["url"])
                   )
                 )
               ),
             ),
             Flexible(
               child: Text(
-                snap.documentID ,
+                user.getSnap.documentID ,
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold
@@ -74,7 +77,7 @@ class MainPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
                   child: Text(
-                    "Firstname: " + snap.data["firstname"],
+                    "Firstname: " + user.getSnap.data["firstname"],
                     style: TextStyle(
                       fontSize: 20,
                     ),
@@ -83,7 +86,7 @@ class MainPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
                   child: Text(
-                    "Surname: " + snap.data["surname"],
+                    "Surname: " + user.getSnap.data["surname"],
                     style: TextStyle(
                       fontSize: 20
                     )
@@ -97,7 +100,7 @@ class MainPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 10, 0, 20),
                   child: Text(
-                    "Role: " + snap.data["role"],
+                    "Role: " + user.getSnap.data["role"],
                     style: TextStyle(
                       fontSize: 20
                     )

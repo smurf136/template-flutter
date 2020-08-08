@@ -2,9 +2,11 @@ import 'package:template/components/notification.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/sign_in/signin_with_email.dart';
-import './register_email_demo.dart';
 
 class SignInWithEmail extends StatelessWidget {
+
+  static const routeName = '/sign_in_email_page'; 
+
   var emailTextController  = TextEditingController();
   var passwordTextController = TextEditingController();
   @override
@@ -92,11 +94,9 @@ class SignInWithEmail extends StatelessWidget {
                     child: FlatButton(
                       child: Text("Register now"),
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushNamed(
                           context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) => RegisterPage()
-                          )
+                          '/register_email_page'
                         );
                       }
                     )
