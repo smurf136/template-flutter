@@ -1,11 +1,41 @@
 import 'package:flutter/material.dart';
 
 import 'package:template/components/notification.dart';
+import 'package:template/components/profile_list.dart';
 class Profile extends StatelessWidget {
   var appBar = 'Profile';
   get getAppBar => appBar;
+
+  Widget choice_icon(BuildContext context, IconData icon, String label, Function handle){
+    return InkWell(                   
+            onTap: handle,
+            child: Column(
+              children: [
+                Material(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  child: IconButton(
+                    icon: Icon(icon),
+                    iconSize: 20,
+                    color: Colors.white,
+                    onPressed: handle,
+                  ),
+                ),
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.white
+                  )
+                )
+              ],
+            ),
+          );
+  }
+
   @override
   Widget build(BuildContext context) {
+    // return ListView(
     return Column(
       children: [
          Expanded(
@@ -78,179 +108,36 @@ class Profile extends StatelessWidget {
                   child: Center(
                     child: Column(
                       children: [
-                        Container(
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(40, 40, 40, 10),
-                                child:Row(
-                                  children: [
-                                    Icon(Icons.account_box),
-                                    Padding(padding: EdgeInsets.all(10),),
-                                    Text("การซื้อของฉัน")
-                                  ],
-                                ),
+                        profile_list(context, icon: Icons.account_box, title: "การซื้อของฉัน", isLast: false, widget: Padding(
+                            padding: EdgeInsets.fromLTRB(40,10,10,10),
+                            child: Container(
+                              width: 270,
+                              height: 75,
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.all(Radius.circular(10))
                               ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(40,10,10,10),
-                                child: Container(
-                                  width: 270,
-                                  height: 75,
-                                  padding: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.all(Radius.circular(10))
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          IconButton(
-                                            icon: Icon(Icons.payment),
-                                            iconSize: 20,
-                                            color: Colors.white,
-                                            onPressed: (){},
-                                          ),
-                                          Text(
-                                            "ที่ต้องชำระ",
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white
-                                            )
-                                          )
-                                        ],
-                                      ),
-                                      Container(width: 20, child: Divider(color:Colors.grey)),
-                                      Column(
-                                        children: [
-                                          IconButton(
-                                            icon: Icon(Icons.directions_bike),
-                                            iconSize: 20,
-                                            color: Colors.white,
-                                            onPressed: (){},
-                                          ),
-                                          Text(
-                                            "ที่ต้องจัดส่ง",
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      Container(width: 20, child: Divider(color:Colors.grey)),
-                                      Column(
-                                        children: [
-                                          IconButton(
-                                            icon: Icon(Icons.crop_square),
-                                            iconSize: 20,
-                                            color: Colors.white,
-                                            onPressed: (){},
-                                          ),
-                                          Text(
-                                            "ที่ต้องได้รับ",
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white,
-                                            )
-                                          )
-                                        ],
-                                      ),
-                                      Container(width: 20, child: Divider(color:Colors.grey)),
-                                      Column(
-                                        children: [
-                                          IconButton(
-                                            icon: Icon(Icons.rate_review),
-                                            iconSize: 20,
-                                            color: Colors.white,
-                                            onPressed: (){},
-                                          ),
-                                          Text(
-                                            "ให้คะแนน",
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  )
-                                )
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  choice_icon(context, Icons.payment, "ที่ต้องชำระ",(){print("Sth");}),
+                                  Container(width: 20, child: Divider(color:Colors.grey)),
+                                  choice_icon(context, Icons.directions_bike, "ที่ต้องจัดส่ง", (){}),
+                                  Container(width: 20, child: Divider(color:Colors.grey)),
+                                  choice_icon(context, Icons.crop_square, "ที่ต้องได้รับ", (){}),
+                                  Container(width: 20, child: Divider(color:Colors.grey)),
+                                  choice_icon(context, Icons.rate_review, "ให้คะแนน", (){}),
+                                ],
                               )
-                            ],
-                          )
-                        ),
-                        Divider(
-                          thickness: 3,
-                          indent: 75,
-                          endIndent: 55,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(30),
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Icon(Icons.favorite_border),
-                                Padding(padding: EdgeInsets.all(10),),
-                                Text("รายการโปรด")
-                              ],
-                            )
-                          ),
-                        ),
-                        Divider(
-                          thickness: 3,
-                          indent: 75,
-                          endIndent: 55,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(30),
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Icon(Icons.account_balance),
-                                Padding(padding: EdgeInsets.all(10),),
-                                Text("เหรียญ Reward")
-                              ],
-                            )
-                          ),
-                        ),
-                        Divider(
-                          thickness: 3,
-                          indent: 75,
-                          endIndent: 65,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(30),
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Icon(Icons.exit_to_app),
-                                Padding(padding: EdgeInsets.all(10),),
-                                Text("ออกจากระบบ")
-                              ],
-                            )
-                          ),
-                        ),
-                        Divider(
-                          thickness: 3,
-                          indent: 75,
-                          endIndent: 55,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(30),
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Icon(Icons.info_outline),
-                                Padding(padding: EdgeInsets.all(10),),
-                                Text("เกี่ยวกับเรา")
-                              ],
                             )
                           )
                         ),
+                        profile_list(context, icon: Icons.favorite_border, title: "รายการโปรด", isLast: false),
+                        profile_list(context, icon: Icons.account_balance, title: "เหรียญ Reward", isLast: false),
+                        profile_list(context, icon: Icons.exit_to_app, title: "ออกจากระบบ", isLast: false),
+                        profile_list(context, icon: Icons.info_outline, title: "เก่ียวกับเรา", isLast: true),
                       ],
                     )
                   )
