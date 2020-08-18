@@ -65,7 +65,7 @@ class Profile extends StatelessWidget {
                             // color: Colors.red
                           ),
                           child: CircleAvatar(
-                            backgroundImage: AssetImage('assets/images/christmas_cover.jpg'),
+                            backgroundImage: NetworkImage(user.getSnap.data['url']),
                           ),
                           // margin: EdgeInsets.all(40),
                       ),
