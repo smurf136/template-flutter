@@ -22,7 +22,7 @@ Future<bool> signInWithEmail(BuildContext context,
         Navigator.pop(context);
         Navigator.pushReplacementNamed(
           context, 
-          '/main_page');
+          '/alpha_screen');
      }).catchError((e) {
 
      });

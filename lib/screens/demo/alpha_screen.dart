@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:template/components/notification.dart';
 import 'package:template/screens/demo/profile.dart';
 import 'package:template/screens/demo/notification_page.dart';
+import 'package:template/screens/demo/home_page.dart';
 enum ActionBar {noti, profile}
 
 class AlphaScreen extends StatefulWidget {
@@ -79,17 +80,6 @@ class _AlphaScreenState extends State<AlphaScreen> {
     );
   }
 }
-
-class HomePage extends StatelessWidget {
-  var appBar = 'Home Page';
-  get getAppBar => appBar;
-  @override
-  Widget build(BuildContext context) {
-    return Container(child: Text("Home Page"));
-  }
-}
-
-
 
 class Chat extends StatelessWidget {
   var appBar = 'Chat';

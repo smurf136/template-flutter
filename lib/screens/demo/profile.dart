@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:template/components/notification.dart';
 import 'package:template/components/profile_list.dart';
+import 'package:template/states/UserProvider.dart';
 class Profile extends StatelessWidget {
   var appBar = 'Profile';
   get getAppBar => appBar;
+
 
   Widget choice_icon(BuildContext context, IconData icon, String label, Function handle){
     return InkWell(                   
@@ -36,6 +39,7 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // return ListView(
+    UserProvider user = Provider.of<UserProvider>(context, listen: false);
     return Column(
       children: [
          Expanded(
@@ -74,7 +78,7 @@ class Profile extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            "pum wntk".toUpperCase(),
+                            "${user.getSnap.data['firstname']} ${user.getSnap.data['surname']}".toUpperCase(),
                             style: TextStyle(
                               fontSize: 18
                             ),

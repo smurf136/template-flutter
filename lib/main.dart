@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           home: user.isAuth 
               ? MainPage()
               : SigninPage(),
-          initialRoute: AlphaScreen.routeName,
+          initialRoute: SigninPage.routeName,
           routes: {
             SigninPage.routeName: (context) => SigninPage(),
             SignInWithEmail.routeName: (context) => SignInWithEmail(),
