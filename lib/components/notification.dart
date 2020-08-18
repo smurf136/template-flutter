@@ -10,7 +10,6 @@ void showMessageBox(BuildContext context, {@required String title, @required Str
           children: <Widget> [
             Icon(
               Icons.info,
-              color: Colors.green,
             ),
             Flexible(
               child: Text(
