@@ -140,7 +140,7 @@ class Profile extends StatelessWidget {
                         ),
                         profile_list(context, icon: Icons.favorite_border, title: "รายการโปรด", isLast: false),
                         profile_list(context, icon: Icons.account_balance, title: "เหรียญ Reward", isLast: false),
-                        profile_list(context, icon: Icons.exit_to_app, title: "ออกจากระบบ", isLast: false),
+                        profile_list(context, icon: Icons.exit_to_app, title: "ออกจากระบบ", handle: user.signOut, isLast: false),
                         profile_list(context, icon: Icons.info_outline, title: "เก่ียวกับเรา", isLast: true),
                       ],
                     )

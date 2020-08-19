@@ -75,14 +75,11 @@ class SignInWithEmail extends StatelessWidget {
                             if (emailTextController.text == "" || passwordTextController.text == "") {
                               return showMessageBox(context,
                                title: "Failed", content: "Please fill in all of the information");
+                            }else if(emailTextController.text == null || passwordTextController.text == null){
+                              return showMessageBox(context, title: "Failed to Sign In", content: "Please fill in all of the information");
                             }
-                            if(await signInWithEmail(context, email: emailTextController.text, password: passwordTextController.text)){
-                              print("Sign-in Success! ");
-                              showMessageBox(
-                                context,
-                                title: "Successfully",
-                                content: "Welcome to Demo"
-                              );
+                            if(emailTextController.text != null && passwordTextController.text != null){
+                              await signInWithEmail(context, email: emailTextController.text, password: passwordTextController.text);
                             }
                           }
                         )

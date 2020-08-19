@@ -16,5 +16,10 @@ class UserProvider with ChangeNotifier {
   void setSnap(DocumentSnapshot dataSnap){
     snap = dataSnap;
   }
-
+  // void signOut(BuildContext context){
+  void signOut(){
+    FirebaseAuth.instance.signOut();
+    setUser(null);
+    notifyListeners();
+  }
 }

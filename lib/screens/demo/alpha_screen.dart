@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:template/components/notification.dart';
 import 'package:template/screens/demo/profile.dart';
 import 'package:template/screens/demo/notification_page.dart';
 import 'package:template/screens/demo/home_page.dart';
+import 'package:template/states/UserProvider.dart';
 enum ActionBar {noti, profile}
 
 class AlphaScreen extends StatefulWidget {
@@ -26,6 +28,7 @@ class _AlphaScreenState extends State<AlphaScreen> {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider user = Provider.of<UserProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(appBar),
@@ -51,7 +54,7 @@ class _AlphaScreenState extends State<AlphaScreen> {
           )
         ],
       ),
-      body: Center(child: widgetList.elementAt(_selectedIndexPage)),
+      body: Center(child: filtering(context, user, widgetList, _selectedIndexPage)),
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
           canvasColor: Colors.orange[800],
@@ -78,6 +81,17 @@ class _AlphaScreenState extends State<AlphaScreen> {
         ),
       )
     );
+  }
+}
+
+Widget filtering(BuildContext context, UserProvider user, List widget_list, int selected_page){
+  if(user.isAuth){
+    return widget_list.elementAt(selected_page);
+  }else {
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      print(_);
+      Navigator.of(context).pushReplacementNamed('/main_sign_in');
+    });
   }
 }
 
